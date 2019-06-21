@@ -5,6 +5,9 @@
 * [XMLFile.xml](./CS/WebSite/XMLFile.xml) (VB: [XMLFile.xml](./VB/WebSite/XMLFile.xml))
 <!-- default file list end -->
 # How to bind ASPxGridView with XmlDataSource
+<!-- run online -->
+**[[Run Online]](https://codecentral.devexpress.com/e2178)**
+<!-- run online end -->
 
 
 <p>This demo is based on the <a href="http://msdn.microsoft.com/en-us/library/aa479341.aspx">GridView Examples for ASP.NET 2.0: Accessing Data with the DataSource Controls</a> MSDN article. It illustrates how to bind the ASPxGridView with the <a href="http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.xmldatasource%28VS.80%29.aspx">XmlDataSource</a> control.<br />The ASPxGridView generates its column automatically for the following XmlDataSource's structure:<br /><br /></p>
