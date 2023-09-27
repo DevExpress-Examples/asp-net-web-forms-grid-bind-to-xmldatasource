@@ -3,22 +3,17 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E2178)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
 
-* [XMLFile.xml](./CS/WebSite/App_Data/XMLFile.xml) (VB: [XMLFile.xml](./VB/WebSite/App_Data/XMLFile.xml))
-* [XSLTFile.xslt](./CS/WebSite/App_Data/XSLTFile.xslt) (VB: [XSLTFile.xslt](./VB/WebSite/App_Data/XSLTFile.xslt))
-* [Default.aspx](./CS/WebSite/Default.aspx) (VB: [Default.aspx](./VB/WebSite/Default.aspx))
-* **[XmlViaXslt.aspx](./CS/WebSite/XmlViaXslt.aspx) (VB: [XmlViaXslt.aspx](./VB/WebSite/XmlViaXslt.aspx))**
-<!-- default file list end -->
-# How to bind ASPxGridView with XmlDataSource
+# GridView for ASP.NET Web Forms - How to bind the grid to an XmlDataSource
 <!-- run online -->
 **[[Run Online]](https://codecentral.devexpress.com/e2178/)**
 <!-- run online end -->
 
+This example demonstrates how to bind ASPxGridView to the [XmlDataSource](https://learn.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.xmldatasource?view=netframework-4.8.1&redirectedfrom=MSDN) control
 
-<p>This demo is based on the <a href="http://msdn.microsoft.com/en-us/library/aa479341.aspx">GridView Examples for ASP.NET 2.0: Accessing Data with the DataSource Controls</a> MSDN article. It illustrates how to bind the ASPxGridView with the <a href="http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.xmldatasource%28VS.80%29.aspx">XmlDataSource</a> control.<br />The ASPxGridView generates its column automatically for the following XmlDataSource's structure:<br /><br /></p>
+## Overview
 
+This demo is based on the [GridView Examples for ASP.NET 2.0: Accessing Data with the DataSource Controls](https://learn.microsoft.com/en-us/previous-versions/dotnet/articles/aa479341(v=msdn.10)?redirectedfrom=MSDN) MSDN article. The ASPxGridView generates its column automatically for the following XmlDataSource's structure:
 
 ```XML
 <root>
@@ -26,18 +21,11 @@
 </root>
 ```
 
-
-<p> </p>
-
-
 ```aspx
 <dx:GridViewDataTextColumn FieldName="field1" />
-
 ```
 
-
-<p><br />If it's necessary to bind the ASPxGridView with the XmlDataSource whose structure is non-standard:<br /><br /></p>
-
+If it's necessary to bind the ASPxGridView to the XmlDataSource whose structure is non-standard:
 
 ```xml
 <root>
@@ -46,40 +34,36 @@
     </DataItem>
 </root>
 ```
+1. Use the XSLT technology to transform the underlying XML file in the required manner:
 
+    ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <xsl:stylesheet version="1.0" xmlns:xsl="<a href="http://www.w3.org/1999/XSL/Transform">http://www.w3.org/1999/XSL/Transform</a>">
+      <xsl:template match="/">
+        <items>
+          <xsl:for-each select="//DataItem">
+            <item field1="{field1}" />
+          </xsl:for-each>
+        </items>
+      </xsl:template>
+    </xsl:stylesheet>
+    ```
 
-<p><br />1) Use the XSLT technology to transform the underlying XML file in the required manner:<br /><br /></p>
+2. Use the GridViewColumn's [DataItemTemplate](https://docs.devexpress.com/AspNet/DevExpress.Web.GridViewDataColumn.DataItemTemplate) property and an XPath expression:
 
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="<a href="http://www.w3.org/1999/XSL/Transform">http://www.w3.org/1999/XSL/Transform</a>">
-  <xsl:template match="/">
-    <items>
-      <xsl:for-each select="//DataItem">
-        <item field1="{field1}" />
-      </xsl:for-each>
-    </items>
-  </xsl:template>
-</xsl:stylesheet>
+    ```aspx
+    <dx:GridViewDataTextColumn FieldName="field1">
+        <DataItemTemplate>
+            <%#XPath("field1")%>
+        </DataItemTemplate>
+    </dx:GridViewDataTextColumn>
 ```
 
+To allow ASPxGridView sorting, it's necessary to implement the <a href="http://msdn.microsoft.com/en-us/library/system.xml.xpath.ixpathnavigable.aspx">IXPathNavigable</a> interface for the ASPxGridView.DataSource's type. Please refer to the <a href="http://msdn.microsoft.com/en-us/library/ms950764.aspx">XPath Querying Over Objects with ObjectXPathNavigator</a> MSDN article regarding this.
 
-<p><br />2) Use the GridViewColumn's <a href="http://documentation.devexpress.com/#AspNet/DevExpressWebASPxGridViewGridViewDataColumn_DataItemTemplatetopic">DataItemTemplate</a> and an XPath expression:<br /><br /></p>
+## Files to Review
 
-
-```aspx
-<dx:GridViewDataTextColumn FieldName="field1">
-    <DataItemTemplate>
-        <%#XPath("field1")%>
-    </DataItemTemplate>
-</dx:GridViewDataTextColumn>
-
-```
-
-
-<p><br />To allow ASPxGridView sorting, it's necessary to implement the <a href="http://msdn.microsoft.com/en-us/library/system.xml.xpath.ixpathnavigable.aspx">IXPathNavigable</a> interface for the ASPxGridView.DataSource's type. Please refer to the <a href="http://msdn.microsoft.com/en-us/library/ms950764.aspx">XPath Querying Over Objects with ObjectXPathNavigator</a> MSDN article regarding this.<br /><br /><strong>See Also:<br /></strong><a href="https://www.devexpress.com/Support/Center/p/E2180">How to bind ASPxGridView with Xml Document via ObjectDataSource</a><br /><a href="https://www.devexpress.com/Support/Center/p/E2287">How to show long text in the PreviewRow using the ASPxCallback control</a></p>
-
-<br/>
-
-
+* [XMLFile.xml](./CS/WebSite/App_Data/XMLFile.xml)
+* [XSLTFile.xslt](./CS/WebSite/App_Data/XSLTFile.xslt)
+* [Default.aspx](./CS/WebSite/Default.aspx)
+* [XmlViaXslt.aspx](./CS/WebSite/XmlViaXslt.aspx)
