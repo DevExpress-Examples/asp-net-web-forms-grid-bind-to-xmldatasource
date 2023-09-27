@@ -57,7 +57,7 @@ If it's necessary to bind the ASPxGridView to the XmlDataSource whose structure 
             <%#XPath("field1")%>
         </DataItemTemplate>
     </dx:GridViewDataTextColumn>
-```
+    ```
 
 To allow ASPxGridView sorting, it's necessary to implement the <a href="http://msdn.microsoft.com/en-us/library/system.xml.xpath.ixpathnavigable.aspx">IXPathNavigable</a> interface for the ASPxGridView.DataSource's type. Please refer to the <a href="http://msdn.microsoft.com/en-us/library/ms950764.aspx">XPath Querying Over Objects with ObjectXPathNavigator</a> MSDN article regarding this.
 
