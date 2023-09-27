@@ -9,7 +9,7 @@
 **[[Run Online]](https://codecentral.devexpress.com/e2178/)**
 <!-- run online end -->
 
-This example demonstrates how to bind ASPxGridView to the [XmlDataSource](https://learn.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.xmldatasource?view=netframework-4.8.1&redirectedfrom=MSDN) control
+This example demonstrates how to bind ASPxGridView to the [XmlDataSource](https://learn.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.xmldatasource?view=netframework-4.8.1&redirectedfrom=MSDN) control.
 
 ## Overview
 
