@@ -6,7 +6,7 @@
 
 # GridView for ASP.NET Web Forms - How to bind the grid to an XmlDataSource
 <!-- run online -->
-**[[Run Online]](https://codecentral.devexpress.com/e2178/)**
+**[[Run Online]](https://codecentral.devexpress.com/128537987/)**
 <!-- run online end -->
 
 This example demonstrates how to bind ASPxGridView to the [XmlDataSource](https://learn.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.xmldatasource?view=netframework-4.8.1&redirectedfrom=MSDN) control.
